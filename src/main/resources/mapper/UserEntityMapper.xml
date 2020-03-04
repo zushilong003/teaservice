@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingtian.pmrApi.model.dao.UserEntityMapper">
+    <resultMap id="BaseResultMap" type="com.lingtian.pmrApi.Entity.UserEntity">
+        <id column="code" jdbcType="INTEGER" property="code"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="pass_word" jdbcType="VARCHAR" property="passWord"/>
+        <result column="realname" jdbcType="VARCHAR" property="realname"/>
+        <result column="roles" jdbcType="VARCHAR" property="roles"/>
+        <result column="tb_desc" jdbcType="VARCHAR" property="tbDesc"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    code, user_name, pass_word, realname, roles, tb_desc, update_time
+  </sql>
+
+    <select id="selectUserList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tea_user
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tea_user
+        where code = #{code,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tea_user
+    where code = #{code,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.lingtian.pmrApi.Entity.UserEntity">
+    insert into tea_user (code, user_name, pass_word, 
+      realname, roles, tb_desc, 
+      update_time)
+    values (#{code,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{roles,jdbcType=VARCHAR}, #{tbDesc,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.lingtian.pmrApi.Entity.UserEntity">
+        insert into tea_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="passWord != null">
+                pass_word,
+            </if>
+            <if test="realname != null">
+                realname,
+            </if>
+            <if test="roles != null">
+                roles,
+            </if>
+            <if test="tbDesc != null">
+                tb_desc,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="passWord != null">
+                #{passWord,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="roles != null">
+                #{roles,jdbcType=VARCHAR},
+            </if>
+            <if test="tbDesc != null">
+                #{tbDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lingtian.pmrApi.Entity.UserEntity">
+        update tea_user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="passWord != null">
+                pass_word = #{passWord,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                realname = #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="roles != null">
+                roles = #{roles,jdbcType=VARCHAR},
+            </if>
+            <if test="tbDesc != null">
+                tb_desc = #{tbDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where code = #{code,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lingtian.pmrApi.Entity.UserEntity">
+    update tea_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      pass_word = #{passWord,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      roles = #{roles,jdbcType=VARCHAR},
+      tb_desc = #{tbDesc,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where code = #{code,jdbcType=INTEGER}
+  </update>
+</mapper>
