@@ -151,7 +151,7 @@ public class JsonToYamlUtil {
 
 
     public static void main(String args[]) {
-        String json = "{\"spec.slaveImage\":\"harbor.paas.shein.io/k8s/testemr1-slave-master-default:2019.09.05-15.36.59\",\"spec.slavePvc\":\"1Gi\",\"spec.kind\":\"PmrService\",\"spec.masterImage\":\"harbor.paas.shein.io/k8s/testemr1-master-default:2019.09.05-15.35.55\",\"spec.resources.limits.memory\":\"4Gi\",\"spec.masterPvc\":\"1Gi\",\"spec.scn\":\"nfs-dynamic-class\",\"spec.resources.requests.cpu\":\"100m\",\"spec.size\":\"1\",\"spec.apiVersion\":\"app.shein.com/v1alpha1\",\"spec.resources.requests.memory\":\"200Mi\",\"spec.resources.limits.cpu\":\"4\",\"spec.hostTail\":\"abc-test.sheincorp.cn\",\"spec.nodeSelector.env\":\"dev\"}\n";
+        String json = "{\"spec.slaveImage\":\"harbor.paas.test.io/k8s/testemr1-slave-master-default:2019.09.05-15.36.59\",\"spec.slavePvc\":\"1Gi\",\"spec.kind\":\"PmrService\",\"spec.masterImage\":\"harbor.paas.test.io/k8s/testemr1-master-default:2019.09.05-15.35.55\",\"spec.resources.limits.memory\":\"4Gi\",\"spec.masterPvc\":\"1Gi\",\"spec.scn\":\"nfs-dynamic-class\",\"spec.resources.requests.cpu\":\"100m\",\"spec.size\":\"1\",\"spec.apiVersion\":\"app.test.com/v1alpha1\",\"spec.resources.requests.memory\":\"200Mi\",\"spec.resources.limits.cpu\":\"4\",\"spec.hostTail\":\"abc-test.testcorp.cn\",\"spec.nodeSelector.env\":\"dev\"}\n";
         System.out.println(jsonToYaml(json));
 
         String yaml = "spec:\n" +
@@ -163,16 +163,16 @@ public class JsonToYamlUtil {
                 "    requests:\n" +
                 "      memory: \"200Mi\"\n" +
                 "      cpu: \"100m\"\n" +
-                "  masterImage: \"harbor.paas.shein.io/k8s/testemr1-master-default:2019.09.05-15.35.55\"\n" +
+                "  masterImage: \"harbor.paas.test.io/k8s/testemr1-master-default:2019.09.05-15.35.55\"\n" +
                 "  scn: \"nfs-dynamic-class\"\n" +
                 "  slavePvc: \"1Gi\"\n" +
                 "  nodeSelector:\n" +
                 "    env: \"dev\"\n" +
-                "  slaveImage: \"harbor.paas.shein.io/k8s/testemr1-slave-master-default:2019.09.05-15.36.59\"\n" +
-                "  hostTail: \"abc-test.sheincorp.cn\"\n" +
+                "  slaveImage: \"harbor.paas.test.io/k8s/testemr1-slave-master-default:2019.09.05-15.36.59\"\n" +
+                "  hostTail: \"abc-test.testcorp.cn\"\n" +
                 "  size: \"1\"\n" +
                 "kind: \"PmrService\"\n" +
-                "apiVersion: \"app.shein.com/v1alpha1\"";
+                "apiVersion: \"app.test.com/v1alpha1\"";
         System.out.println(yamlToJson(yaml));
 
     }
